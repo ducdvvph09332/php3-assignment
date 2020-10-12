@@ -64,10 +64,10 @@
                             </a>
                             <ul class="collapse submenu list-unstyled" id="datatables" data-parent="#accordionExample">
                                 <li>
-                                    <a href="#"> List </a>
+                                    <a href="{{route('categories.index')}}"> List </a>
                                 </li>
                                 <li>
-                                    <a href="#"> Add new </a>
+                                    <a href="{{route('categories.create')}}"> Add new </a>
                                 </li>
                             </ul>
                         </li>

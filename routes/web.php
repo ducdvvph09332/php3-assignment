@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,8 @@ Route::get('/', function () {
 
 Route::prefix('admin/')->group(function(){
     Route::resource('users', UserController::class);
+});
+
+Route::prefix('admin/')->group(function(){
+    Route::resource('categories', CategoryController::class);
 });
