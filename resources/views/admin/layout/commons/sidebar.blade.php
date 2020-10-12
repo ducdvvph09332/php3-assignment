@@ -24,13 +24,54 @@
                             </a>
                             <ul class="collapse submenu list-unstyled" id="users" data-parent="#accordionExample">
                                 <li>
-                                    <a href="user_profile.html"> Profile </a>
+                                    <a href="{{route('users.index')}}"> List </a>
                                 </li>
                                 <li>
-                                    <a href="user_account_setting.html"> Account Settings </a>
+                                    <a href="{{route('users.create')}}"> Add User </a>
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="menu">
+                            <a href="#components" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                                    <span>Products</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </a>
+                            <ul class="collapse submenu list-unstyled" id="components" data-parent="#accordionExample">
+                                <li>
+                                    <a href="#"> List </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Add new  </a>
+                                </li>         
+                            </ul>
+                        </li>
+
+                        <li class="menu">
+                            <a href="#datatables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                                    <span>Categories</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </a>
+                            <ul class="collapse submenu list-unstyled" id="datatables" data-parent="#accordionExample">
+                                <li>
+                                    <a href="#"> List </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Add new </a>
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
                     <!-- <div class="shadow-bottom"></div> -->
                     
