@@ -64,10 +64,10 @@
                             </a>
                             <ul class="collapse submenu list-unstyled" id="components" data-parent="#accordionExample">
                                 <li>
-                                    <a href="#"> List </a>
+                                    <a href="{{route('products.index')}}"> List </a>
                                 </li>
                                 <li>
-                                    <a href="#"> Add new  </a>
+                                    <a href="{{route('products.create')}}"> Add new  </a>
                                 </li>         
                             </ul>
                         </li>
