@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,10 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $products = Product::all();
+
+        return view('admin.comments.create', compact('users','products'));
     }
 
     /**
@@ -43,7 +47,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment = new Comment;
+        $comment->fill($request->all());
+        if($comment->save()){
+            return redirect()->route('comments.index');
+        }
     }
 
     /**
