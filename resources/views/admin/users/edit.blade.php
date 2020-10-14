@@ -46,7 +46,7 @@
                                 <option value="1" {{($user->is_active) == 1 ? "selected" : ""}}>Activate</option>
                                 <option value="0" {{($user->is_active) == 0 ? "selected" : ""}}>Deactivate</option>
                             </select>
-                            </ddiv>
+                            </div>
                             <input type="submit" name="pass" class="mt-4 btn btn-primary text-right" value="Update">
                             <a href="{{route('users.index')}}" class="mt-4 btn btn-danger text-right">Cancel</a>
                         </div>

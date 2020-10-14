@@ -25,8 +25,5 @@ Route::prefix('admin/')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('comments', CommentController::class);
     Route::resource('products', ProductController::class);
-});
-
-Route::prefix('admin/')->group(function () {
     Route::resource('categories', CategoryController::class);
 });
