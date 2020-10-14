@@ -11,3 +11,15 @@
 <link href="{{asset('admin/plugins/apex/apexcharts.css')}}" rel="stylesheet" type="text/css">
 <link href="{{asset('admin/assets/css/dashboard/dash_1.css')}}" rel="stylesheet" type="text/css" />
 <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+<!-- BEGIN THEME GLOBAL STYLES -->
+<link href="{{asset('admin/plugins/flatpickr/flatpickr.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('admin/plugins/noUiSlider/nouislider.min.css')}}" rel="stylesheet" type="text/css">
+<!-- END THEME GLOBAL STYLES -->
+
+<!--  BEGIN CUSTOM STYLE FILE  -->
+<link href="{{asset('admin/assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('admin/plugins/flatpickr/custom-flatpickr.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('admin/plugins/noUiSlider/custom-nouiSlider.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('admin/plugins/bootstrap-range-Slider/bootstrap-slider.css')}}" rel="stylesheet" type="text/css">
+<!--  END CUSTOM STYLE FILE  -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -15,7 +16,13 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::orderBy('id', 'DESC')->get();
-        return view('admin.comments.index', compact('comments'));
+        foreach ($comments as $item){
+            if(!(User::find($item->user_id))){
+                $comment = Comment::find($item->id);
+                $comment->delete();
+            }
+            return view('admin.comments.index', compact('comments'));
+        }
     }
 
     /**

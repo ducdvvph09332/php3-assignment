@@ -9,6 +9,7 @@
         App.init();
     });
 </script>
+<script src="{{asset('admin/plugins/highlight/highlight.pack.js')}}"></script>
 <script src="{{asset('admin/assets/js/custom.js')}}"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 
@@ -16,3 +17,13 @@
 <script src="{{asset('admin/plugins/apex/apexcharts.min.js')}}"></script>
 <script src="{{asset('admin/assets/js/dashboard/dash_1.js')}}"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="{{asset('admin/assets/js/scrollspyNav.js')}}"></script>
+<script src="{{asset('admin/plugins/flatpickr/flatpickr.js')}}"></script>
+<script src="{{asset('admin/plugins/noUiSlider/nouislider.min.js')}}"></script>
+
+<script src="{{asset('admin/plugins/flatpickr/custom-flatpickr.js')}}"></script>
+<script src="{{asset('admin/plugins/noUiSlider/custom-nouiSlider.js')}}"></script>
+<script src="{{asset('admin/plugins/bootstrap-range-Slider/bootstrap-rangeSlider.js')}}"></script>
+<!-- END PAGE LEVEL SCRIPTS -->

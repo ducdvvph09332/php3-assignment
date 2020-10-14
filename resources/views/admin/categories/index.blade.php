@@ -18,7 +18,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>parent_id</th>
+                            <th>Parent category</th>
                             <th>Action
                                 <a href="" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square">
                                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -33,7 +33,7 @@
                         @foreach($categories as $item)
                         <tr>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->parent_id}}</td>
+                            <td>{{isset($item->category->name) ? $item->category->name:"No parent !!!"}}</td>
                             <td>
                                 <a href="{{route('categories.show',$item->id)}}" class="btn btn-info mt-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
