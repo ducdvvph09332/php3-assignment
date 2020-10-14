@@ -26,7 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.categories.create',compact('categories'));
     }
 
     /**
@@ -37,7 +38,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $categories = new Category();
+        $categories->fill($request->all());
+        if($categories->save()){
+            return redirect()->route('categories.index');
+        }
     }
 
     /**
