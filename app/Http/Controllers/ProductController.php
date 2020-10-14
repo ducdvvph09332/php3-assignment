@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function create()
     {
         $category = Category::all();
-        return view('admin.products.create',compact('category'));
+        return view('admin.products.create', compact('category'));
     }
 
     /**
@@ -40,7 +40,7 @@ class ProductController extends Controller
     {
         $product = new Product();
         $product->fill($request->all());
-        if($product->save()){
+        if ($product->save()) {
             return redirect()->route('products.index');
         }
     }
@@ -53,7 +53,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -87,7 +87,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if($product){
+        if ($product) {
             $product->delete();
         }
         return redirect()->route('products.index');
