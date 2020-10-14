@@ -23,3 +23,4 @@
 <link href="{{asset('admin/plugins/noUiSlider/custom-nouiSlider.css')}}" rel="stylesheet" type="text/css">
 <link href="{{asset('admin/plugins/bootstrap-range-Slider/bootstrap-slider.css')}}" rel="stylesheet" type="text/css">
 <!--  END CUSTOM STYLE FILE  -->
+
