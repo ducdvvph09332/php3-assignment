@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -77,7 +77,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        if($user->update($request->all())){
+           return redirect()->route('users.index');
+        }
+        
     }
 
     /**
