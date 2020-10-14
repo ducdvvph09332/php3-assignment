@@ -37,7 +37,7 @@
                             <td>{{$item->first_name}} {{$item->last_name}}</td>
                             <td>{{$item->email}}</td>
                             <td>{{$item->address}}</td>
-                            <td><span>{{$item->status==1 ? "Yes" : "No"}}</span></td>
+                            <td><span>{{($item->is_active)==1 ? "Yes" : "No"}}</span></td>
                             <td>
                                 <a href="{{route('users.show',$item->id)}}" class="btn btn-info mt-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
