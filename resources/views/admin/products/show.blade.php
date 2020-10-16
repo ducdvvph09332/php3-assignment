@@ -29,7 +29,7 @@
                         </li>
                         <li class="contacts-block__item mt-3">
 
-                            <h4><span class="font-weight-bold">Image: </span> <img src="{{$product->image_url}}" width="300" alt=""> </h4>
+                            <h4><span class="font-weight-bold">Image: </span> <img src="{{substr($product->image_url, 0, 4) == 'http' ? $product->image_url : asset("$product->image_url")}}" width="300" alt=""> </h4>
                         </li>
                         <li class="contacts-block__item mt-3">
 
