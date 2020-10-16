@@ -49,7 +49,16 @@
                                 <span class="text-danger">@error('birthday') {{$message}} @enderror</span>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="text-primary">Role</label>
+                            <select name="role_id" id="" class="form-control">
+                                @foreach($roles as $item)
+                                    <option value="{{$item->id}}"
+                                    {{$item->id==$user->role_id ? "selected":""}}    
+                                    >{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label class="text-primary">Status</label>
                             <select name="is_active" id="" class="form-control">

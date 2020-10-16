@@ -19,7 +19,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Address</th>
+                            <th>Role</th>
                             <th>Status</th>
                             <th>Action
                                 <a href="{{route('users.create')}}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square">
@@ -36,7 +36,7 @@
                         <tr>
                             <td>{{$item->first_name}} {{$item->last_name}}</td>
                             <td>{{$item->email}}</td>
-                            <td>{{$item->address}}</td>
+                            <td>{{$item->role->name}}</td>
                             <td><span>{{($item->is_active)==1 ? "Yes" : "No"}}</span></td>
                             <td>
                                 <a href="{{route('users.show',$item->id)}}" class="btn btn-info mt-2">
