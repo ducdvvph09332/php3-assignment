@@ -77,9 +77,9 @@
                         <a href="{{route('products.index')}}" class="mt-4 btn btn-danger text-right">Cancel</a>
                     </div>
                 </div>
+                
+            </div>
         </form>
-
-    </div>
 </div>
 </div>
 @endsection
