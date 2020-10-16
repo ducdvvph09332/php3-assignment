@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'address' => $this->faker->address,
             'birthday' => $this->faker->dateTime,
+            'role_id' => $this->faker->numberBetween(1,3),
             'is_active' => $this->faker->numberBetween(0,1),
             'remember_token' => Str::random(10),
         ];
