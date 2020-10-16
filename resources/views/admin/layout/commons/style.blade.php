@@ -24,3 +24,6 @@
 <link href="{{asset('admin/plugins/bootstrap-range-Slider/bootstrap-slider.css')}}" rel="stylesheet" type="text/css">
 <!--  END CUSTOM STYLE FILE  -->
 
+<!-- BEGIN CDN -->
+<link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<!-- END CDN -->
