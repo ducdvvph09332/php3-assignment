@@ -17,13 +17,7 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::orderBy('id', 'DESC')->get();
-        foreach ($comments as $item){
-            if(!(User::find($item->user_id))){
-                $comment = Comment::find($item->id);
-                $comment->delete();
-            }
-            return view('admin.comments.index', compact('comments'));
-        }
+        return view('admin.comments.index', compact('comments'));
     }
 
     /**
@@ -36,7 +30,7 @@ class CommentController extends Controller
         $users = User::all();
         $products = Product::all();
 
-        return view('admin.comments.create', compact('users','products'));
+        return view('admin.comments.create', compact('users', 'products'));
     }
 
     /**
@@ -49,7 +43,7 @@ class CommentController extends Controller
     {
         $comment = new Comment;
         $comment->fill($request->all());
-        if($comment->save()){
+        if ($comment->save()) {
             return redirect()->route('comments.index');
         }
     }
@@ -96,7 +90,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        if($comment){
+        if ($comment) {
             $comment->delete();
         }
         return redirect()->route('comments.index');

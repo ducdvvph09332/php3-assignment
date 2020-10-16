@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -93,7 +94,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if($user){
+            $comment = Comment::where('user_id',$user->id);
             $user->delete();
+            $comment->delete();
         }
         return redirect()->route('users.index');
     }
