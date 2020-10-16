@@ -38,7 +38,8 @@
                         <tr>
                             <td>{{$item->name}}</td>
                             <td>{{$item->category->name}}</td>
-                            <td><img src="{{$item->image_url}}" width="100" alt=""></td>
+                            <td><img src="{{substr($item->image_url, 0, 4) == 'http' ? $item->image_url : asset("$item->image_url")}}" width="100" alt=""></td>
+
                             <td>{{$item->description}}</td>
                             <td>{{$item->price}}</td>
                             <td><span>{{$item->is_active == 1 ? "Yes" : "No"}}</span></td>
