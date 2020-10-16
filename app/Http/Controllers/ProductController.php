@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductStoreRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class ProductController extends Controller
     public function create()
     {
         $category = Category::all();
-        return view('admin.products.create',compact('category'));
+        return view('admin.products.create', compact('category'));
     }
 
     /**
@@ -36,11 +37,17 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
         $product = new Product();
         $product->fill($request->all());
-        if($product->save()){
+        if ($request->hasFile('image_url')) {
+            $originalFileName = $request->image_url->getClientOriginalName();
+            $fileName = uniqid() . '_' . str_replace(' ', '_', $originalFileName);
+            $path = $request->file('image_url')->storeAs('products', $fileName);
+            $product->image_url = $path;
+        }
+        if ($product->save()) {
             return redirect()->route('products.index');
         }
     }
@@ -64,7 +71,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+
     }
 
     /**
@@ -76,7 +83,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        dd($product);
     }
 
     /**
@@ -87,7 +94,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if($product){
+        if ($product) {
             $product->delete();
         }
         return redirect()->route('products.index');
