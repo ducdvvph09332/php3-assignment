@@ -1,7 +1,5 @@
 <?php
-
 use Illuminate\Support\Facades\Auth;
-
 ?>
 <div class="header-container fixed-top">
     <header class="header navbar navbar-expand-sm">
