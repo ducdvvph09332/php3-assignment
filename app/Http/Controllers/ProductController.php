@@ -61,7 +61,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $comments = Comment::where('product_id', $product->id)->get();
+        $comments = Comment::where('product_id', $product->id)->orderBy('id', 'DESC')->get();
         return view('admin.products.show', compact('product','comments'));
     }
 
