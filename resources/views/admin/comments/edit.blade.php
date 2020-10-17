@@ -17,6 +17,7 @@
                         <div class="form-group">
                             <label class="text-primary">Edit Your Content</label>
                             <textarea name="content" id="" cols="30" rows="6" class="form-control" >{{$comment->content}}</textarea>
+                            <span class="text-danger">@error('content'){{$message}} @enderror</span>
                         </div>
                         <input type="submit" name="pass" class="mt-4 btn btn-primary text-right" value="Save it">
                         <a href="javascript:history.back()" class="mt-4 btn btn-danger text-right">Cancel</a>

@@ -31,7 +31,7 @@ class CommentStoreRequest extends FormRequest
     {
         return [
             'content.required' => 'Hãy viết nội dung bình luận của bạn',
-            'content.required' => 'Yêu cầu nội dung ít nhất 2 ký tự',
+            'content.min' => 'Yêu cầu nội dung ít nhất 2 ký tự',
         ];
     }
 }
