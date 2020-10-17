@@ -8,10 +8,15 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only('index','show','edit','destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -45,8 +50,12 @@ class UserController extends Controller
         $user = new User;
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
-        if($user->save()){
-            return redirect()->route('users.index');
+        if ($user->save()) {
+            if (Auth::check()) {
+                return redirect()->route('users.index');
+            } else {
+                return redirect()->route('login');
+            }
         }
     }
 
@@ -70,7 +79,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
-        return view('admin.users.edit', compact('user','roles'));
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -82,10 +91,9 @@ class UserController extends Controller
      */
     public function update(UserStoreRequest $request, User $user)
     {
-        if($user->update($request->all())){
-           return redirect()->route('users.index');
+        if ($user->update($request->all())) {
+            return redirect()->route('users.index');
         }
-        
     }
 
     /**
@@ -96,8 +104,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if($user){
-            $comment = Comment::where('user_id',$user->id);
+        if ($user) {
+            $comment = Comment::where('user_id', $user->id);
             $user->delete();
             $comment->delete();
         }
