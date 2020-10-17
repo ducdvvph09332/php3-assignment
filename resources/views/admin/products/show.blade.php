@@ -60,6 +60,7 @@ use Illuminate\Support\Facades\Auth;
                     <input type="hidden" name="user_id" id="" value="{{Auth::user()->id}}">
                     <input type="hidden" name="product_id" id="" value="{{$product->id}}">
                     <textarea name="content" class="form-control" id="" rows="6"></textarea>
+                    <span class="text-danger">@error('content'){{$message}} @enderror</span>
                 </div>
                 <div class="">
                     <button type="submit" class="btn btn-primary">Comment</button>
