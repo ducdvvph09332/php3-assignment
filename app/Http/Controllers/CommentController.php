@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentStoreRequest;
 use App\Models\Comment;
 use App\Models\Product;
 use App\Models\User;
@@ -27,10 +28,10 @@ class CommentController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        $products = Product::all();
+        // $users = User::all();
+        // $products = Product::all();
 
-        return view('admin.comments.create', compact('users', 'products'));
+        // return view('admin.comments.create', compact('users', 'products'));
     }
 
     /**
@@ -67,7 +68,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        return view('admin.comments.edit', compact('comment'));
     }
 
     /**
@@ -77,9 +78,11 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(CommentStoreRequest $request, Comment $comment)
     {
-        //
+        if($comment->update($request->all())){
+            return redirect()->route('products.show',$request->product_id);
+        };
     }
 
     /**
