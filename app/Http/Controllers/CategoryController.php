@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\CategoryStoreRequest;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
@@ -37,7 +37,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
         
         $categories = new Category();
@@ -55,7 +55,8 @@ class CategoryController extends Controller
      */
     public function show(Category $Category)
     {
-        //
+        $categories = Category::orderBy('id', 'desc')->get();
+        return view('admin.categories.show', compact('Category','categories'));
     }
 
     /**
@@ -66,7 +67,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $Category)
     {
-        //
+        $categories = Category::all();
+        return view('admin.categories.edit', compact('Category','categories'));
     }
 
     /**
@@ -78,7 +80,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $Category)
     {
-        //
+        if($Category->update($request->all())){
+            return redirect()->route('categories.index');
+         }
     }
 
     /**
