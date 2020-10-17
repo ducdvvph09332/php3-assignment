@@ -3,7 +3,10 @@
 @section('item', 'Product')
 @section('sub_item', 'Show')
 @section('content')
+<?php
+use Illuminate\Support\Facades\Auth;
 
+?>
 <div class="container col-xl-10 col-lg-6 col-md-5 col-sm-12 layout-top-spacing">
 
     <div class="user-profile layout-spacing">
@@ -50,10 +53,13 @@
             <div class="d-flex justify-content-between">
                 <h4 class="text-primary font-weight-bold">Comments</h4>
             </div>
-            <form action="route('comments.store')">
+            <form action="{{route('comments.store')}}" method="POST">
+                @csrf
                 <div class="form-group">
                     <label for="">Leave a comment</label>
-                    <textarea name="" class="form-control" id="" rows="6"></textarea>
+                    <input type="hidden" name="user_id" id="" value="{{Auth::user()->id}}">
+                    <input type="hidden" name="product_id" id="" value="{{$product->id}}">
+                    <textarea name="content" class="form-control" id="" rows="6"></textarea>
                 </div>
                 <div class="">
                     <button type="submit" class="btn btn-primary">Comment</button>
@@ -73,11 +79,11 @@
                 <div class="card mb-3">
                     <p class="d-flex align-items-center">
                         <form action="{{route('comments.destroy', $item->id)}}" method="POST" class="">
-                        &nbsp;&nbsp; By <a href="{{route('users.show',$item->user_id)}}" class="text-info font-weight-bold">{{$item->user->first_name}} {{$item->user->first_name}} </a>
-                        at <span class="text-muted">{{$item->updated_at}} </span>
+                        &nbsp;&nbsp; By <a href="{{route('users.show',$item->user_id)}}" class="text-info font-weight-bold">{{$item->user->first_name}} {{$item->user->last_name}} </a>
+                        at <span class="text-muted">{{date('d-m-Y', strtotime($item->updated_at))}}</span>
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" id="">
-                        <button type="submit" class="btn btn-danger float-right">
+                        <button type="submit" class="btn btn-danger float-right" onclick="return confirm('Are you sure')">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 icon">
                             <polyline points="3 6 5 6 21 6"></polyline>
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -94,7 +100,8 @@
 
                     </p>
                     <div class="card-header">
-                        {{$item->content}}
+
+                            <h6>{{$item->content}}</h6>
                     </div>
                 </div>
                 @endforeach

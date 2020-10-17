@@ -44,7 +44,7 @@ class CommentController extends Controller
         $comment = new Comment;
         $comment->fill($request->all());
         if ($comment->save()) {
-            return redirect()->route('comments.index');
+            return redirect()->route('products.show', $request->product_id);
         }
     }
 
@@ -93,6 +93,6 @@ class CommentController extends Controller
         if ($comment) {
             $comment->delete();
         }
-        return redirect()->route('comments.index');
+        return redirect()->route('products.show', $comment->product_id);
     }
 }
