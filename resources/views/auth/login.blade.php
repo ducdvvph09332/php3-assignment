@@ -1,4 +1,5 @@
 @extends('auth.layout.master')
+@section('title', 'Login')
 @section('main')
 <div class="form-content">
 
