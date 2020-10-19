@@ -84,6 +84,12 @@ class ProductController extends Controller
      */
     public function update(ProductStoreRequest $request, Product $product)
     {
+        if ($request->hasFile('image_url')) {
+            $originalFileName = $request->image_url->getClientOriginalName();
+            $fileName = uniqid() . '_' . str_replace(' ', '_', $originalFileName);
+            $path = $request->file('image_url')->storeAs('products', $fileName);
+            $product->image_url = $path;
+        }
         if ($product->update($request->all())) {
             return redirect()->route('products.index');
         }
