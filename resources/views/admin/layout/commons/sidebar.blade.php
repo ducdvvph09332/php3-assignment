@@ -10,6 +10,11 @@
                                     <span>Dashboard</span>
                                 </div>
                             </a>
+                            <ul class="collapse submenu list-unstyled" id="dashboard" data-parent="#accordionExample">
+                                <li>
+                                    <a href="{{route('dashboard')}}">All</a>
+                                </li>
+                            </ul>
                         </li>
                         
                         <li class="menu">

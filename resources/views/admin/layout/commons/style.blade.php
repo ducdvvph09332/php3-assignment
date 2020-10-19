@@ -25,5 +25,5 @@
 <!--  END CUSTOM STYLE FILE  -->
 
 <!-- BEGIN CDN -->
-<link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 <!-- END CDN -->

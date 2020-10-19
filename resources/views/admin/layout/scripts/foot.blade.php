@@ -29,26 +29,30 @@
 <!-- END PAGE LEVEL SCRIPTS -->
 
 <!-- BEGIN CDN  -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <!-- CDN -->
 
 <!-- CONFIRM DELETE -->
 <!-- <script>
-    $('.btn-destroy').on('click', function() {
-        var redirectUrl = 'users';
-        Swal.fire({
-            title: 'Thông báo!',
-            text: "Bạn có chắc chắn muốn xóa đơn đặt này?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Đồng ý'
-        }).then((result) => { // arrow function es6 (es2015)
-            if (result.value) {
-                window.location.href = redirectUrl;
-            }
-        });
-    });
+    function archiveFunction() {
+        event.preventDefault(); // prevent form submit
+        var form = event.target.form; // storing the form
+        swal({
+                title: "Are you sure?",
+                text: "But you will still be able to retrieve this file.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, archive it!",
+                cancelButtonText: "No, cancel please!",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    form.submit(); // submitting the form when user press yes
+                }
+            });
+    }
 </script> -->
 <!-- END CONFIRM DELETE -->

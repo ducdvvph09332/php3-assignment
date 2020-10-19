@@ -28,7 +28,7 @@ class UserStoreRequest extends FormRequest
                 return [
                     'first_name' => 'required|max:50',
                     'last_name' => 'required|max:50',
-                    'email' => 'required|email:rfc',
+                    'email' => 'required|email:rfc|unique:users',
                     'password' => 'required|min:6|max:255',
                     'confirm_password' => 'same:password',
                     'address' => 'required|min:2|max:255',
@@ -39,7 +39,7 @@ class UserStoreRequest extends FormRequest
                 return [
                     'first_name' => 'required|max:50',
                     'last_name' => 'required|max:50',
-                    'email' => 'required|email:rfc',
+                    'email' => 'required|email:rfc|unique:users',
                     'address' => 'required|min:2|max:255',
                     'birthday' => 'required|date',
                 ];
@@ -57,6 +57,7 @@ class UserStoreRequest extends FormRequest
             'last_name.max' => 'Yêu cầu nhập tên không quá 50 ký tự',
             'email.required' => 'Yêu cầu nhập email',
             'email.email' => 'Yêu cầu nhập email đúng định dạng',
+            'email.unique' => 'Email này đã tồn tại trên hệ thống',
             'password.required' => 'Yêu cầu nhập mật khẩu',
             'password.min' => 'Yêu cầu nhập mật khẩu ít nhất 6 ký tự',
             'password.max' => 'Yêu cầu nhập mật khẩu không quá 255 ký tự',
