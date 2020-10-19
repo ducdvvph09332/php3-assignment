@@ -13,6 +13,7 @@ class CommentController extends Controller
     public function __construct()
     {
         $this->middleware('checkLogin');
+        
     }
     /**
      * Display a listing of the resource.

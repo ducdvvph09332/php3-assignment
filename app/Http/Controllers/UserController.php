@@ -106,8 +106,8 @@ class UserController extends Controller
     {
         if ($user) {
             $comment = Comment::where('user_id', $user->id);
-            $user->delete();
             $comment->delete();
+            $user->delete();
         }
         return redirect()->route('users.index')->with('notify','Xóa tài khoản thành công');
     }

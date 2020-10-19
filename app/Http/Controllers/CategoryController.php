@@ -98,9 +98,7 @@ class CategoryController extends Controller
     public function destroy(Category $Category)
     {
         if($Category){
-            $Product = Product::where('category_id',$Category->id);
             $Category->delete();
-            $Product->delete();
         }
         return redirect()->route('categories.index')->with('notify','Xóa thể loại thành công');
     }

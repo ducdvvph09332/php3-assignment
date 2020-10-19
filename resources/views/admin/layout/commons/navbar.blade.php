@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Auth;
         </ul>
         <ul class="navbar-item flex-row ml-md-auto theme-brand dropdown user-profile-dropdown">
             <li class="nav-item theme-text" style="margin-right: -15px;">
-                <a class="nav-link"> Hello, {{Auth::user()->last_name}} </a>
+                <a class="nav-link"> Hello, {{Auth::user()->last_name}} {{Auth::user()->last_name}} </a>
             </li>
             <li class="nav-item dropdown user-profile-dropdown">
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
