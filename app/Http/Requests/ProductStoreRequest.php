@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use PhpParser\Node\Expr\FuncCall;
 
 class ProductStoreRequest extends FormRequest
@@ -27,7 +28,7 @@ class ProductStoreRequest extends FormRequest
         switch ($this->method()) {
             case 'POST': {
                     return [
-                        'name' => 'required|min:3|max:100',
+                        'name' => 'required|min:3|max:100|unique:products',
                         'image_url' => 'required|mimes:jpeg,jpg,png,gif',
                         'price' => 'required|numeric|min:1',
                         'sale_percent' => 'required|min:0|numeric',
@@ -40,6 +41,10 @@ class ProductStoreRequest extends FormRequest
             case 'PUT': {
                     return [
                         'name' => 'required|min:3|max:100',
+                        'name' => [
+                            'required',
+                            Rule::unique('products')->ignore($this->product->id, 'id'),
+                        ],
                         'image_url' => 'mimes:jpeg,jpg,png,gif',
                         'price' => 'required|numeric|min:1',
                         'sale_percent' => 'required|min:0|numeric',
@@ -55,6 +60,7 @@ class ProductStoreRequest extends FormRequest
         return [
             'name.min' => 'Độ dài tên nhỏ nhất là 3 kí tự',
             'name.max' => 'Độ dài tên không quá 100 kí tự',
+            'name.unique' => 'Tên sản phẩm đã tồn tại',
             'name.required' => 'Hãy nhập tên',
             'image_url.required' => 'Hãy chọn ảnh',
             'image_url.mimes' => 'Định dạng ảnh không phù hợp',
