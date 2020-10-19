@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkLogin')->only('index', 'create', 'edit', 'update', 'destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +35,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -42,8 +50,12 @@ class UserController extends Controller
         $user = new User;
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
-        if($user->save()){
-            return redirect()->route('users.index');
+        if ($user->save()) {
+            if (Auth::check()) {
+                return redirect()->route('users.index')->with('notify', 'Thêm tài khoản thành công!');
+            } else {
+                return redirect()->route('login')->with('notify','Bạn đã đăng ký thành công, vui lòng đăng nhập!');
+            }
         }
     }
 
@@ -66,7 +78,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -78,10 +91,9 @@ class UserController extends Controller
      */
     public function update(UserStoreRequest $request, User $user)
     {
-        if($user->update($request->all())){
-           return redirect()->route('users.index');
+        if ($user->update($request->all())) {
+            return redirect()->route('users.index')->with('notify','Sửa tài khoản thành công');
         }
-        
     }
 
     /**
@@ -92,9 +104,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if($user){
+        if ($user) {
+            $comment = Comment::where('user_id', $user->id);
             $user->delete();
+            $comment->delete();
         }
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('notify','Xóa tài khoản thành công');
     }
 }

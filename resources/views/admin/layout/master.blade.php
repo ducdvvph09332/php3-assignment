@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
         <title>@yield('title')</title>
-@include('admin.layout.commons.style')
+@include('admin.layout.commons.styles')
 
     </head>
     <body>
@@ -51,7 +51,7 @@
         </div>
         <!-- END MAIN CONTAINER -->
 
-@include('admin.layout.scripts.foot')
+@include('admin.layout.commons.scripts')
 
     </body>
 

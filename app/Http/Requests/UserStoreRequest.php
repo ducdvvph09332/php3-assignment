@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserStoreRequest extends FormRequest
 {
@@ -23,28 +24,34 @@ class UserStoreRequest extends FormRequest
      */
     public function rules()
     {
-        switch ($this->method()){
-            case 'POST':{
-                return [
-                    'first_name' => 'required|max:50',
-                    'last_name' => 'required|max:50',
-                    'email' => 'required|email:rfc',
-                    'password' => 'required|min:6|max:255',
-                    'confirm_password' => 'same:password',
-                    'address' => 'required|min:2|max:255',
-                    'birthday' => 'required|date',
-                ];
-            } 
-            case 'PUT':{
-                return [
-                    'first_name' => 'required|max:50',
-                    'last_name' => 'required|max:50',
-                    'email' => 'required|email:rfc',
-                    'address' => 'required|min:2|max:255',
-                    'birthday' => 'required|date',
-                ];
-            } 
-            default: break;
+
+        switch ($this->method()) {
+            case 'POST': {
+                    return [
+                        'first_name' => 'required|max:50',
+                        'last_name' => 'required|max:50',
+                        'email' => 'required|email:rfc|unique:users',
+                        'password' => 'required|min:6|max:255',
+                        'confirm_password' => 'same:password',
+                        'address' => 'required|min:2|max:255',
+                        'birthday' => 'required|date',
+                    ];
+                }
+            case 'PUT': {
+                    return [
+                        'first_name' => 'required|max:50',
+                        'last_name' => 'required|max:50',
+                        'email' => [
+                            'required',
+                            'email:rfc',
+                            Rule::unique('users')->ignore($this->user->id, 'id'),
+                        ],
+                        'address' => 'required|min:2|max:255',
+                        'birthday' => 'required|date',
+                    ];
+                }
+            default:
+                break;
         }
     }
 
@@ -57,6 +64,7 @@ class UserStoreRequest extends FormRequest
             'last_name.max' => 'Yêu cầu nhập tên không quá 50 ký tự',
             'email.required' => 'Yêu cầu nhập email',
             'email.email' => 'Yêu cầu nhập email đúng định dạng',
+            'email.unique' => 'Email này đã tồn tại trên hệ thống',
             'password.required' => 'Yêu cầu nhập mật khẩu',
             'password.min' => 'Yêu cầu nhập mật khẩu ít nhất 6 ký tự',
             'password.max' => 'Yêu cầu nhập mật khẩu không quá 255 ký tự',

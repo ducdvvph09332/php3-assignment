@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'address',
         'birthday',
+        'role_id',
         'is_active',
     ];
 
@@ -49,6 +50,10 @@ class User extends Authenticatable
 
     public function comments(){
         return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentStoreRequest;
 use App\Models\Comment;
 use App\Models\Product;
 use App\Models\User;
@@ -9,6 +10,10 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkLogin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,13 +22,7 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::orderBy('id', 'DESC')->get();
-        foreach ($comments as $item){
-            if(!(User::find($item->user_id))){
-                $comment = Comment::find($item->id);
-                $comment->delete();
-            }
-            return view('admin.comments.index', compact('comments'));
-        }
+        return view('admin.comments.index', compact('comments'));
     }
 
     /**
@@ -33,10 +32,10 @@ class CommentController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        $products = Product::all();
+        // $users = User::all();
+        // $products = Product::all();
 
-        return view('admin.comments.create', compact('users','products'));
+        // return view('admin.comments.create', compact('users', 'products'));
     }
 
     /**
@@ -45,12 +44,12 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentStoreRequest $request)
     {
         $comment = new Comment;
         $comment->fill($request->all());
-        if($comment->save()){
-            return redirect()->route('comments.index');
+        if ($comment->save()) {
+            return redirect()->route('products.show', $request->product_id)->with('notify','Thêm bình luận thành công');
         }
     }
 
@@ -73,7 +72,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        return view('admin.comments.edit', compact('comment'));
     }
 
     /**
@@ -83,9 +82,11 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(CommentStoreRequest $request, Comment $comment)
     {
-        //
+        if($comment->update($request->all())){
+            return redirect()->route('products.show',$request->product_id)->with('notify','Sửa bình luận thành công');
+        };
     }
 
     /**
@@ -96,9 +97,9 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        if($comment){
+        if ($comment) {
             $comment->delete();
         }
-        return redirect()->route('comments.index');
+        return redirect()->route('products.show', $comment->product_id)->with('notify','Xóa bình luận thành công');
     }
 }

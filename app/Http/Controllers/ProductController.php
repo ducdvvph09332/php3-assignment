@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkLogin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +53,7 @@ class ProductController extends Controller
             $product->image_url = $path;
         }
         if ($product->save()) {
-            return redirect()->route('products.index');
+            return redirect()->route('products.index')->with('notify','Thêm sản phẩm thành công');
         }
     }
 
@@ -60,7 +65,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('admin.products.show', compact('product'));
+        $comments = Comment::where('product_id', $product->id)->orderBy('id', 'DESC')->get();
+        return view('admin.products.show', compact('product','comments'));
     }
 
     /**
@@ -100,6 +106,6 @@ class ProductController extends Controller
         if ($product) {
             $product->delete();
         }
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('notify','Xóa sản phẩm thành công');
     }
 }

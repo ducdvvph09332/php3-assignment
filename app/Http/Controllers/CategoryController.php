@@ -1,13 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\CategoryStoreRequest;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkLogin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,13 +41,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
         
         $categories = new Category();
         $categories->fill($request->all());
         if($categories->save()){
-            return redirect()->route('categories.index');
+            return redirect()->route('categories.index')->with('notify','Thêm thể loại thành công');
         }
     }
 
@@ -54,7 +59,8 @@ class CategoryController extends Controller
      */
     public function show(Category $Category)
     {
-        //
+        $categories = Category::orderBy('id', 'desc')->get();
+        return view('admin.categories.show', compact('Category','categories'));
     }
 
     /**
@@ -65,7 +71,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $Category)
     {
-        //
+        $categories = Category::all();
+        return view('admin.categories.edit', compact('Category','categories'));
     }
 
     /**
@@ -77,7 +84,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $Category)
     {
-        //
+        if($Category->update($request->all())){
+            return redirect()->route('categories.index')->with('notify','Sửa thể loại thành công');
+         }
     }
 
     /**
@@ -89,8 +98,10 @@ class CategoryController extends Controller
     public function destroy(Category $Category)
     {
         if($Category){
+            $Product = Product::where('category_id',$Category->id);
             $Category->delete();
+            $Product->delete();
         }
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('notify','Xóa thể loại thành công');
     }
 }
