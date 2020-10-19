@@ -26,7 +26,7 @@
                 <input id="password" name="password" type="password" class="form-control" placeholder="Password">
             </div>
             <h6 class="text-danger">
-                {{session('notify') ? session('notify') : ""}}
+                {{session('error') ? session('error') : ""}}
             </h6>
             <div class="d-sm-flex justify-content-between mt-3">
                 <div class="field-wrapper toggle-pass">
@@ -57,7 +57,7 @@
 
         </div>
     </form>
-    <p class="terms-conditions">© 2020 All Rights Reserved. <a href="index-2.html">CORK</a> is a product of Designreset. <a href="javascript:void(0);">Cookie Preferences</a>, <a href="javascript:void(0);">Privacy</a>, and <a href="javascript:void(0);">Terms</a>.</p>
+    <p class="terms-conditions">© 2020 All Rights Reserved. <a href="{{route('homepage')}}">CORK</a> is a product of Designreset. <a href="javascript:void(0);">Cookie Preferences</a>, <a href="javascript:void(0);">Privacy</a>, and <a href="javascript:void(0);">Terms</a>.</p>
 
 </div>
 @endsection

@@ -52,9 +52,9 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         if ($user->save()) {
             if (Auth::check()) {
-                return redirect()->route('users.index');
+                return redirect()->route('users.index')->with('notify', 'Thêm tài khoản thành công!');
             } else {
-                return redirect()->route('login');
+                return redirect()->route('login')->with('notify','Bạn đã đăng ký thành công, vui lòng đăng nhập!');
             }
         }
     }
@@ -92,7 +92,7 @@ class UserController extends Controller
     public function update(UserStoreRequest $request, User $user)
     {
         if ($user->update($request->all())) {
-            return redirect()->route('users.index');
+            return redirect()->route('users.index')->with('notify','Sửa tài khoản thành công');
         }
     }
 
@@ -109,6 +109,6 @@ class UserController extends Controller
             $user->delete();
             $comment->delete();
         }
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('notify','Xóa tài khoản thành công');
     }
 }

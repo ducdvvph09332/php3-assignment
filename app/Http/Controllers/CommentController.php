@@ -49,7 +49,7 @@ class CommentController extends Controller
         $comment = new Comment;
         $comment->fill($request->all());
         if ($comment->save()) {
-            return redirect()->route('products.show', $request->product_id);
+            return redirect()->route('products.show', $request->product_id)->with('notify','Thêm bình luận thành công');
         }
     }
 
@@ -85,7 +85,7 @@ class CommentController extends Controller
     public function update(CommentStoreRequest $request, Comment $comment)
     {
         if($comment->update($request->all())){
-            return redirect()->route('products.show',$request->product_id);
+            return redirect()->route('products.show',$request->product_id)->with('notify','Sửa bình luận thành công');
         };
     }
 
@@ -100,6 +100,6 @@ class CommentController extends Controller
         if ($comment) {
             $comment->delete();
         }
-        return redirect()->route('products.show', $comment->product_id);
+        return redirect()->route('products.show', $comment->product_id)->with('notify','Xóa bình luận thành công');
     }
 }

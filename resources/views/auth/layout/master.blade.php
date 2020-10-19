@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>@yield('title') Cover | CORK </title>
-    @include('auth.layout.styles.style')
+    @include('auth.layout.commons.styles')
 </head>
 <body class="form">
     
@@ -28,7 +28,7 @@
     </div>
 
     
-@include('auth.layout.scripts.script')
+@include('auth.layout.commons.scripts')
 
 </body>
 

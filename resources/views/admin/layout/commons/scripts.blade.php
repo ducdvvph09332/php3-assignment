@@ -1,12 +1,25 @@
 <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
 <!-- <script src="{{asset('admin/assets/js/libs/jquery-3.1.1.min.js')}}"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="{{asset('admin/bootstrap/js/popper.min.js')}}"></script>
 <script src="{{asset('admin/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('admin/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
 <script src="{{asset('admin/assets/js/app.js')}}"></script>
+<!-- BEGIN CDN  -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- CDN -->
 <script>
     $(document).ready(function() {
         App.init();
+        <?php if (session('notify')) : ?>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: "{{session('notify')}}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        <?php endif; ?>
     });
 </script>
 <script src="{{asset('admin/plugins/highlight/highlight.pack.js')}}"></script>
@@ -28,9 +41,6 @@
 <script src="{{asset('admin/plugins/bootstrap-range-Slider/bootstrap-rangeSlider.js')}}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
-<!-- BEGIN CDN  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<!-- CDN -->
 
 <!-- CONFIRM DELETE -->
 <!-- <script>

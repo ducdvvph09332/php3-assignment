@@ -47,7 +47,7 @@ class CategoryController extends Controller
         $categories = new Category();
         $categories->fill($request->all());
         if($categories->save()){
-            return redirect()->route('categories.index');
+            return redirect()->route('categories.index')->with('notify','Thêm thể loại thành công');
         }
     }
 
@@ -85,7 +85,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $Category)
     {
         if($Category->update($request->all())){
-            return redirect()->route('categories.index');
+            return redirect()->route('categories.index')->with('notify','Sửa thể loại thành công');
          }
     }
 
@@ -102,6 +102,6 @@ class CategoryController extends Controller
             $Category->delete();
             $Product->delete();
         }
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('notify','Xóa thể loại thành công');
     }
 }

@@ -15,3 +15,19 @@
     <script src="{{asset('admin/plugins/noUiSlider/custom-nouiSlider.js')}}"></script>
     <script src="{{asset('admin/plugins/bootstrap-range-Slider/bootstrap-rangeSlider.js')}}"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN CDN  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- CDN -->
+    <script>
+        $(document).ready(function() {
+            <?php if (session('notify')) : ?>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: "{{session('notify')}}",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            <?php endif; ?>
+        });
+    </script>

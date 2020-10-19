@@ -19,7 +19,7 @@ class AuthController extends Controller
         if(Auth::attempt($data)){
             return redirect()->route('dashboard');
         }else{
-            return redirect()->route('login')->with('notify', 'Bạn đã nhập sai email hoặc password!');
+            return redirect()->route('login')->with('error', 'Bạn đã nhập sai email hoặc password!');
         }
     }
 
