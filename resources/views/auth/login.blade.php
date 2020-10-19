@@ -6,7 +6,7 @@
     <h1 class="">Log In to <a href="{{route('homepage')}}"><span class="brand-name">CORK</span></a></h1>
     <p class="signup-link">New Here? <a href="{{route('register')}}">Create an account</a></p>
 
-    <form class="text-left" method="post" action="{{route('post-login')}}">
+    <form class="text-left" method="POST" action="{{route('post-login')}}">
         @csrf
         <div class="form">
 
@@ -25,13 +25,10 @@
                 </svg>
                 <input id="password" name="password" type="password" class="form-control" placeholder="Password">
             </div>
-            <div class="text-danger">
-
-                @if(session('notify'))
-                {{session('notify')}}
-                @endif
-            </div>
-            <div class="d-sm-flex justify-content-between">
+            <h6 class="text-danger">
+                {{session('notify') ? session('notify') : ""}}
+            </h6>
+            <div class="d-sm-flex justify-content-between mt-3">
                 <div class="field-wrapper toggle-pass">
                     <p class="d-inline-block">Show Password</p>
                     <label class="switch s-primary">

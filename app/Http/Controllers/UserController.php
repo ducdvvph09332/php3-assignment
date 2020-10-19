@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only('index','show','edit','destroy');
+        $this->middleware('checkLogin')->only('index', 'create', 'edit', 'update', 'destroy');
     }
     /**
      * Display a listing of the resource.

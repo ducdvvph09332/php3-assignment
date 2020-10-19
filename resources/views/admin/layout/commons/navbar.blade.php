@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
         <ul class="navbar-item theme-brand flex-row  text-center">
             <li class="nav-item theme-logo">
-                <a href="index-2.html">
+                <a href="{{route('dashboard')}}">
                     <img src="{{asset('admin/assets/img/logo.svg')}}" class="navbar-logo" alt="logo">
                 </a>
             </li>
             <li class="nav-item theme-text">
-                <a href="index-2.html" class="nav-link"> Shop Admin </a>
+                <a href="{{route('dashboard')}}" class="nav-link"> Shop Admin </a>
             </li>
         </ul>
 
