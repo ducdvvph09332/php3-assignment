@@ -23,17 +23,17 @@
                         <div class="form-group">
                             <label class="text-primary">Category</label>
                             <select name="category_id" class="form-control" id="">
-                                <option value="">Null</option>
+                                <option value="" {{$product->category_id == null ? "selected" : ""}}>Null</option>
                                 @foreach($categories as $item)
                                 <option value="{{$item->id}}" 
-                               {{($item->id) == ($product->category_id) ? "selected":""}}
-                                >{{$item->name}}</option>
-                                @endforeach
+                                    {{($item->id) == ($product->category_id) ? "selected":""}}
+                                    >{{$item->name}}</option>
+                                    @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="text-primary">Image</label>
-                            <input type="file" name="image_url" class="form-control"><img src="{{asset("$product->image_url")}}" width=500>
+                            <input type="file" name="image_url" class="form-control"><img src="{{asset($product->image_url)}}" width=500>
                             @error('image_url')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

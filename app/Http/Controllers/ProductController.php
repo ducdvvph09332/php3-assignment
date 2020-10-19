@@ -53,7 +53,7 @@ class ProductController extends Controller
             $product->image_url = $path;
         }
         if ($product->save()) {
-            return redirect()->route('products.index')->with('notify','Thêm sản phẩm thành công');
+            return redirect()->route('products.index')->with('notify', 'Thêm sản phẩm thành công');
         }
     }
 
@@ -66,7 +66,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $comments = Comment::where('product_id', $product->id)->orderBy('id', 'DESC')->get();
-        return view('admin.products.show', compact('product','comments'));
+        return view('admin.products.show', compact('product', 'comments'));
     }
 
     /**
@@ -95,9 +95,21 @@ class ProductController extends Controller
             $fileName = uniqid() . '_' . str_replace(' ', '_', $originalFileName);
             $path = $request->file('image_url')->storeAs('products', $fileName);
             $product->image_url = $path;
-        }
-        if ($product->update($request->all())) {
-            return redirect()->route('products.index');
+            if ($product->update([
+                'name'=>$request->name,
+                'category_id'=>$request->category_id,
+                'description'=>$request->description,
+                'price'=>$request->price,
+                'sale_percent'=>$request->sale_percent,
+                'stocks'=>$request->stocks,
+                'is_active'=>$request->is_active,
+            ])) {
+                return redirect()->route('products.index');
+            }
+        } else {
+            if ($product->update($request->all())) {
+                return redirect()->route('products.index');
+            }
         }
     }
 
@@ -114,6 +126,6 @@ class ProductController extends Controller
             $comments->delete();
             $product->delete();
         }
-        return redirect()->route('products.index')->with('notify','Xóa sản phẩm thành công');
+        return redirect()->route('products.index')->with('notify', 'Xóa sản phẩm thành công');
     }
 }
