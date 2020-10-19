@@ -34,15 +34,15 @@ class ProductStoreRequest extends FormRequest
                         'sale_percent' => 'required|min:0|numeric',
                         'stocks' => 'required|min:1|numeric',
                         'description' => 'required|min:3|max:255',
-                        'category_id' => 'required'
 
                     ];
                 }
             case 'PUT': {
                     return [
-                        'name' => 'required|min:3|max:100',
                         'name' => [
                             'required',
+                            'min:3',
+                            'max:100',
                             Rule::unique('products')->ignore($this->product->id, 'id'),
                         ],
                         'image_url' => 'mimes:jpeg,jpg,png,gif',
@@ -50,7 +50,6 @@ class ProductStoreRequest extends FormRequest
                         'sale_percent' => 'required|min:0|numeric',
                         'stocks' => 'required|min:1|numeric',
                         'description' => 'required|min:3|max:255',
-                        'category_id' => 'required'
                     ];
                 }
         }
@@ -64,7 +63,6 @@ class ProductStoreRequest extends FormRequest
             'name.required' => 'Hãy nhập tên',
             'image_url.required' => 'Hãy chọn ảnh',
             'image_url.mimes' => 'Định dạng ảnh không phù hợp',
-            'category_id.required' => 'Hãy chọn danh mục',
             'price.required' => 'Hãy nhập giá tiền',
             'price.numeric' => 'Hãy nhập số',
             'price.min' => 'Số tiền nhỏ nhất là 1',

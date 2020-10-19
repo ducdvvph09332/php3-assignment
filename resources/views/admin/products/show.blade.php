@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
             </div>
             <div class="row d-flex align-items-center">
                 <div class="col">
-                    <img src="{{$product->image_url}}" width="100%" class="rounded shadow" alt="">
+                    <img src="{{asset($product->image_url)}}" width="100%" class="rounded shadow" alt="">
                 </div>
                 <div class="col">
 
