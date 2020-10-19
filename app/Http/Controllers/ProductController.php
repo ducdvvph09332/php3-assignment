@@ -53,7 +53,7 @@ class ProductController extends Controller
             $product->image_url = $path;
         }
         if ($product->save()) {
-            return redirect()->route('products.index');
+            return redirect()->route('products.index')->with('notify','Thêm sản phẩm thành công');
         }
     }
 
@@ -104,6 +104,6 @@ class ProductController extends Controller
         if ($product) {
             $product->delete();
         }
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('notify','Xóa sản phẩm thành công');
     }
 }
