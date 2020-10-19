@@ -23,7 +23,7 @@ class UserStoreRequest extends FormRequest
      */
     public function rules()
     {
-        switch($this->method()){
+        switch ($this->method()){
             case 'POST':{
                 return [
                     'first_name' => 'required|max:50',

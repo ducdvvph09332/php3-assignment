@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label class="text-primary">Image</label>
-                            <input type="file" name="image_url" class="form-control"><img src="{{asset("$product->image_url")}}" width=500>
+                            <input type="file" name="image" class="form-control"><img src="{{asset("$product->image_url")}}" width=500>
                             @error('image_url')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -76,7 +76,7 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <input type="submit" name="pass" class="mt-4 btn btn-primary text-right" value="Create">
+                        <input type="submit" name="pass" class="mt-4 btn btn-primary text-right" value="Update">
                         <a href="{{route('products.index')}}" class="mt-4 btn btn-danger text-right">Cancel</a>
                     </div>
                 </div>

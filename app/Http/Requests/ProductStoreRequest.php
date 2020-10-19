@@ -24,16 +24,31 @@ class ProductStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|min:3|max:100',
-            'image_url' => 'required|mimes:jpeg,jpg,png,gif',
-            'price' => 'required|numeric|min:1',
-            'sale_percent' => 'required|min:0|numeric',
-            'stocks' => 'required|min:1|numeric',
-            'description' => 'required|min:3|max:255',
-            'category_id' =>'required'
+        switch ($this->method()) {
+            case 'POST': {
+                    return [
+                        'name' => 'required|min:3|max:100',
+                        'image_url' => 'required|mimes:jpeg,jpg,png,gif',
+                        'price' => 'required|numeric|min:1',
+                        'sale_percent' => 'required|min:0|numeric',
+                        'stocks' => 'required|min:1|numeric',
+                        'description' => 'required|min:3|max:255',
+                        'category_id' => 'required'
 
-        ];
+                    ];
+                }
+            case 'PUT': {
+                    return [
+                        'name' => 'required|min:3|max:100',
+                        'image_url' => 'mimes:jpeg,jpg,png,gif',
+                        'price' => 'required|numeric|min:1',
+                        'sale_percent' => 'required|min:0|numeric',
+                        'stocks' => 'required|min:1|numeric',
+                        'description' => 'required|min:3|max:255',
+                        'category_id' => 'required'
+                    ];
+                }
+        }
     }
     public function messages()
     {
@@ -43,7 +58,7 @@ class ProductStoreRequest extends FormRequest
             'name.required' => 'Hãy nhập tên',
             'image_url.required' => 'Hãy chọn ảnh',
             'image_url.mimes' => 'Định dạng ảnh không phù hợp',
-            'category_id.required' =>'Hãy chọn danh mục',
+            'category_id.required' => 'Hãy chọn danh mục',
             'price.required' => 'Hãy nhập giá tiền',
             'price.numeric' => 'Hãy nhập số',
             'price.min' => 'Số tiền nhỏ nhất là 1',
