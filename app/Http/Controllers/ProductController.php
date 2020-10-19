@@ -102,6 +102,8 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         if ($product) {
+            $comments = Comment::where('product_id', $product->id);
+            $comments->delete();
             $product->delete();
         }
         return redirect()->route('products.index')->with('notify','Xóa sản phẩm thành công');

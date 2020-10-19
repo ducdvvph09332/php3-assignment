@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Auth;
                                 </li>
                                 <li class="contacts-block__item mt-3">
                                                                      
-                                    <h4><span class="font-weight-bold text-primary">Parent Category:</span>{{$Category->name}}</h4> 
+                                    <h4><span class="font-weight-bold text-primary">Parent Category:</span>{{$Category->category->name}}</h4> 
                                 </li> 
                             </ul>
                       
