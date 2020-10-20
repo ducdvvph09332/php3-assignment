@@ -67,6 +67,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="page d-flex justify-content-center">
+                    {{$users->links()}}
+                </div>
             </div>
         </div>
     </div>
