@@ -98,6 +98,10 @@ class CategoryController extends Controller
     public function destroy(Category $Category)
     {
         if($Category){
+            $ParentCategory = Category::where('parent_id',$Category->id);
+            $ParentCategory->update(['parent_id' => null]);
+            $CategoryInProducts = Product::where('category_id',$Category->id);
+            $CategoryInProducts->update(['category_id' => null]);
             $Category->delete();
         }
         return redirect()->route('categories.index')->with('notify','Xóa thể loại thành công');

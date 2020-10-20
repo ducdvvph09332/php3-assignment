@@ -20,7 +20,7 @@ class CheckAdminLogin
         if (Auth::user() != null && Auth::user()->is_active == 1) {
             return $next($request);
         } else {
-            return redirect()->route('login');
+            return redirect()->route('logout');
         }
     }
 }

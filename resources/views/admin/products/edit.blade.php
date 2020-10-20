@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label class="text-primary">Category</label>
                             <select name="category_id" class="form-control" id="">
-                                <option value="" {{$product->category_id == null ? "selected" : ""}}>Null</option>
+                                <option value="" {{$product->category_id == null ? "selected" : ""}}>Uncategorized</option>
                                 @foreach($categories as $item)
                                 <option value="{{$item->id}}" 
                                     {{($item->id) == ($product->category_id) ? "selected":""}}

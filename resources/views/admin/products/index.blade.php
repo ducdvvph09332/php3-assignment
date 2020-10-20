@@ -41,7 +41,7 @@
                             @if(isset($item->category->name))
                             <td>{{$item->category->name}}</td>
                             @else
-                            <td class="text-danger">Null</td>
+                            <td class="text-danger">Uncategorized</td>
                             @endif
                             <td><img src="{{substr($item->image_url, 0, 4) == 'http' ? $item->image_url : asset("$item->image_url")}}" width="100" alt=""></td>
 

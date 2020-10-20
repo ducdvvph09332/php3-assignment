@@ -25,7 +25,6 @@ class CategoryStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:100',
-            'parent_id'=>'required'
 
         ];
     }
@@ -35,7 +34,6 @@ class CategoryStoreRequest extends FormRequest
             'name.min' => 'Độ dài tên nhỏ nhất là 3 kí tự',
             'name.max' => 'Độ dài tên không quá 100 kí tự',
             'name.required' => 'Hãy nhập tên',
-            'parent_id.required'=>'Hãy chọn danh mục',
 
         ];
     }

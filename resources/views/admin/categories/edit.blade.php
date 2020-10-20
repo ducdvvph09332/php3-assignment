@@ -23,6 +23,7 @@
 
                         <div class="form-group">
                         <select name="parent_id" class="form-control" id="">
+                            <option value="" {{$Category->parent_id=="" ? "selected" : ""}}>Null</option>
                                 @foreach($categories as $item)
                                 <option value="{{$item->id}}" 
                                {{($item->id) == ($Category->parent_id) ? "selected":""}}
