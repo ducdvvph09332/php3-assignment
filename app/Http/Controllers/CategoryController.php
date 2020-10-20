@@ -82,7 +82,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $Category)
+    public function update(CategoryStoreRequest $request, Category $Category)
     {
         if($Category->update($request->all())){
             return redirect()->route('categories.index')->with('notify','Sửa thể loại thành công');

@@ -4,6 +4,7 @@
 @section('sub_item', 'Show')
 @section('content')
 <?php
+
 use Illuminate\Support\Facades\Auth;
 
 ?>
@@ -18,27 +19,33 @@ use Illuminate\Support\Facades\Auth;
                         <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                     </svg></a>
             </div>
-                <div class="col">
-                    <div class="user-info-list">
-                        <div class="">
-                        
-                            <ul class="contacts-block list-unstyled">
-                                <li class="contacts-block__item mt-3">
-                                    <h4><span class="font-weight-bold text-primary">Category Name:</span>{{$Category->name}}</h4>
-                                </li>
-                                <li class="contacts-block__item mt-3">
-                                                                     
-                                    <h4><span class="font-weight-bold text-primary">Parent Category:</span>{{$Category->category->name}}</h4> 
-                                </li> 
-                            </ul>
-                      
-                        </div>
+            <div class="col">
+                <div class="user-info-list">
+                    <div class="">
+
+                        <ul class="contacts-block list-unstyled">
+                            <li class="contacts-block__item mt-3">
+                                <h4><span class="font-weight-bold text-primary">Category Name:</span>{{$Category->name}}</h4>
+                            </li>
+                            <li class="contacts-block__item mt-3">
+
+                                <h4><span class="font-weight-bold text-primary">Parent Category:</span>
+                                    @if(isset($Category->category->name))
+                                    <span>{{$Category->category->name}}</span>
+                                    @else
+                                    <span class="text-danger">Null</span>
+                                    @endif
+                                </h4>
+                            </li>
+                        </ul>
+
                     </div>
-                    
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 </div>
 
 
