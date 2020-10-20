@@ -34,7 +34,7 @@ class UserStoreRequest extends FormRequest
                         'password' => 'required|min:6|max:255',
                         'confirm_password' => 'same:password',
                         'address' => 'required|min:2|max:255',
-                        'birthday' => 'required|date',
+                        'birthday' => 'required|date_format:Y-m-d|before:today'
                     ];
                 }
             case 'PUT': {
@@ -47,7 +47,7 @@ class UserStoreRequest extends FormRequest
                             Rule::unique('users')->ignore($this->user->id, 'id'),
                         ],
                         'address' => 'required|min:2|max:255',
-                        'birthday' => 'required|date',
+                        'birthday' => 'required|date_format:Y-m-d|before:today',
                     ];
                 }
             default:
@@ -73,7 +73,8 @@ class UserStoreRequest extends FormRequest
             'address.min' => 'Yêu cầu nhập địa chỉ ít nhất 2 ký tự',
             'address.max' => 'Yêu cầu nhập địa chỉ không quá 255 ký tự',
             'birthday.required' => 'Yêu cầu nhập ngày sinh',
-            'birthday.required' => 'Yêu cầu nhập ngày sinh đúng định dạng',
+            'birthday.date_format' => 'Yêu cầu nhập ngày sinh đúng định dạng',
+            'birthday.before' => 'Ngày sinh phải nhỏ hơn tương lai',
         ];
     }
 }
