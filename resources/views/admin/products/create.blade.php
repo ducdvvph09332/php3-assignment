@@ -24,7 +24,7 @@
                             <select name="category_id" class="form-control" id="">
                                 <option value="">Chọn danh mục</option>
                                 <option value="" disabled>---------------------------------</option>
-                                <option value="">Null</option>
+                                <option value="">Uncategorized</option>
                                 @foreach($category as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach

@@ -22,7 +22,8 @@
 
                         <div class="form-group">
                         <select name="parent_id" class="form-control" id="">
-                        <option value="">Chọn danh mục</option>
+                        <option value="" disabled>Chọn danh mục</option>
+                        <option value="" selected>Null</option>
                                 @foreach($categories as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach

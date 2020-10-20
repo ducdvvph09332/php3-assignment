@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Auth;
                                         @if(isset($product->category->name))
                                         <span>{{$product->category->name}}</span>
                                         @else
-                                        <span class="text-danger">Null</span>
+                                        <span class="text-danger">Uncategorized</span>
                                         @endif</h4>
                                 </li>
                                 <li class="contacts-block__item mt-3">
