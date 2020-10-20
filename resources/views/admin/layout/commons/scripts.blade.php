@@ -43,26 +43,22 @@
 
 
 <!-- CONFIRM DELETE -->
-<!-- <script>
-    function archiveFunction() {
-        event.preventDefault(); // prevent form submit
-        var form = event.target.form; // storing the form
-        swal({
-                title: "Are you sure?",
-                text: "But you will still be able to retrieve this file.",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, archive it!",
-                cancelButtonText: "No, cancel please!",
-                closeOnConfirm: false,
-                closeOnCancel: true
-            },
-            function(isConfirm) {
-                if (isConfirm) {
-                    form.submit(); // submitting the form when user press yes
-                }
-            });
-    }
-</script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script>
+ $('.btn-destroy').click(function(event) {
+      var form =  $(this).closest("form");
+      event.preventDefault();
+      swal({
+          title: `Bạn chắc chắn có muốn xóa?`,
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          form.submit();
+        }
+      });
+  });
+</script>
 <!-- END CONFIRM DELETE -->
