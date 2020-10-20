@@ -74,7 +74,7 @@ class UserStoreRequest extends FormRequest
             'address.max' => 'Yêu cầu nhập địa chỉ không quá 255 ký tự',
             'birthday.required' => 'Yêu cầu nhập ngày sinh',
             'birthday.date_format' => 'Yêu cầu nhập ngày sinh đúng định dạng',
-            'birthday.before' => 'Ngày sinh phải nhỏ hơn tương lai',
+            'birthday.before' => 'Ngày sinh phải nhỏ hơn hiện tại hoặc tương lai',
         ];
     }
 }
