@@ -78,6 +78,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="page d-flex justify-content-center">
+                    {{$products->links()}}
+                </div>
             </div>
         </div>
     </div>
