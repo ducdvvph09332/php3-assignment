@@ -18,6 +18,7 @@ class Category extends Model
     ];
 
     public function products(){
+        //1 category có nhiều sản phẩm. để hasMany
         return $this->hasMany(Product::class, 'category_id', 'id');
     }
 
