@@ -54,7 +54,11 @@
                             <select name="role_id" id="" class="form-control">
                                 @foreach($roles as $item)
                                     <option value="{{$item->id}}"
-                                    {{$item->id==$user->role_id ? "selected":""}}    
+                                    @if($item->id==$user->role_id)
+                                    selected
+                                    @elseif($item->id==3 && Auth::user()->role_id <= 2)
+                                    disabled hidden
+                                    @endif     
                                     >{{$item->name}}</option>
                                 @endforeach
                             </select>

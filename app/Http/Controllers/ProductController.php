@@ -13,6 +13,7 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware('checkLogin');
+        $this->authorizeResource(Product::class,'product');
     }
     /**
      * Display a listing of the resource.
@@ -104,11 +105,11 @@ class ProductController extends Controller
                 'stocks' => $request->stocks,
                 'is_active' => $request->is_active,
             ])) {
-                return redirect()->route('products.index');
+                return redirect()->route('products.index')->with('notify', 'Sửa sản phẩm thành công');
             }
         } else {
             if ($product->update($request->all())) {
-                return redirect()->route('products.index');
+                return redirect()->route('products.index')->with('notify', 'Sửa sản phẩm thành công');
             }
         }
     }

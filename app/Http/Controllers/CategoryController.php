@@ -12,6 +12,7 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->middleware('checkLogin');
+        $this->authorizeResource(Category::class,'category');
     }
     /**
      * Display a listing of the resource.
