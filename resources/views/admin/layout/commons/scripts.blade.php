@@ -20,6 +20,16 @@
                 timer: 1500
             });
         <?php endif; ?>
+
+        <?php if (session('warning')) : ?>
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: "{{session('warning')}}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        <?php endif; ?>
     });
 </script>
 <script src="{{asset('admin/plugins/highlight/highlight.pack.js')}}"></script>

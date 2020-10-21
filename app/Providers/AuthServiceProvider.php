@@ -2,8 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Product;
+use App\Models\User;
+use App\Policies\CategoryPolicy;
 use App\Policies\CommentPolicy;
+use App\Policies\ProductPolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -16,7 +22,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        User::class => UserPolicy::class,
+        Product::class => ProductPolicy::class,
         Comment::class => CommentPolicy::class,
+        Category::class => CategoryPolicy::class,
     ];
 
     /**
@@ -28,12 +37,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('edit-users', function ($user) {
-            return $user->isAdmin;
-        });
-
-        Gate::define('update-post', function ($user, $comment) {
-            return $user->id === $comment->user_id;
-        });
+        
     }
 }

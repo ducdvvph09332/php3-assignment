@@ -3,6 +3,11 @@
 @section('item', 'User')
 @section('sub_item', 'Create')
 @section('content')
+<?php
+
+use Illuminate\Support\Facades\Auth;
+
+?>
 <div class="row">
     <div id="basic" class="col-lg-12 layout-spacing">
 
@@ -63,7 +68,11 @@
                             <select name="role_id" id="" class="form-control">
                                 @foreach($roles as $item)
                                     <option value="{{$item->id}}"
-                                    {{$item->id==2 ? "selected":""}}    
+                                    @if($item->id==2)
+                                    selected
+                                    @elseif($item->id==3 && Auth::user()->role_id <= 2)
+                                    disabled hidden
+                                    @endif    
                                     >{{$item->name}}</option>
                                 @endforeach
                             </select>
