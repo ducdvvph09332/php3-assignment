@@ -71,7 +71,7 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        return $user->id == $comment->user_id || $user->role_id >= $comment->user->role_id;
+        return $user->id == $comment->user_id || $user->role_id > $comment->user->role_id;
     }
 
     /**
