@@ -22,9 +22,8 @@
                         <div class="form-group">
                             <label class="text-primary">Category</label>
                             <select name="category_id" class="form-control" id="">
-                                <option value="">Chọn danh mục</option>
-                                <option value="" disabled>---------------------------------</option>
                                 <option value="">Uncategorized</option>
+                                <option value="" disabled>---------------------------------</option>
                                 @foreach($category as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
