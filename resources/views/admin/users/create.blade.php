@@ -3,11 +3,7 @@
 @section('item', 'User')
 @section('sub_item', 'Create')
 @section('content')
-<?php
 
-use Illuminate\Support\Facades\Auth;
-
-?>
 <div class="row">
     <div id="basic" class="col-lg-12 layout-spacing">
 

@@ -36,9 +36,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        if (Auth::check()) {
-            $this->authorize('create', User::class);
-        }
         $roles = Role::all();
         return view('admin.users.create', compact('roles'));
     }
@@ -51,9 +48,6 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        if (Auth::check()) {
-            $this->authorize('create', User::class);
-        }
         $user = new User;
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
@@ -85,7 +79,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $this->authorize('update', $user);
         $roles = Role::all();
         return view('admin.users.edit', compact('user', 'roles'));
     }
@@ -99,7 +92,6 @@ class UserController extends Controller
      */
     public function update(UserStoreRequest $request, User $user)
     {
-        $this->authorize('update', $user);
         if ($user->update($request->all())) {
             return redirect()->route('users.index')->with('notify', 'Sửa tài khoản thành công');
         }
@@ -113,7 +105,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $this->authorize('delete', $user);
         if ($user) {
             $comment = Comment::where('user_id', $user->id);
             $comment->delete();

@@ -3,23 +3,17 @@
 @section('item', 'Product')
 @section('sub_item', 'Show')
 @section('content')
-<?php
 
-use Illuminate\Support\Facades\Auth;
-
-?>
 <div class="container col-xl-10 col-lg-6 col-md-5 col-sm-12 layout-top-spacing">
 
     <div class="user-profile layout-spacing">
         <div class="widget-content widget-content-area">
             <div class="d-flex justify-content-between">
                 <h2 class="text-primary font-weight-bold">Information</h2>
-                @can('update',$product)
                 <a href="{{route('products.edit', $product->id)}}" class="mt-2 text-success"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
                         <path d="M12 20h9"></path>
                         <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                     </svg></a>
-                @endcan
             </div>
             <div class="row d-flex align-items-center">
                 <div class="col">
@@ -92,7 +86,6 @@ use Illuminate\Support\Facades\Auth;
                             at <span class="text-muted">{{date('d-m-Y', strtotime($item->updated_at))}}</span>
                             @csrf
                             <input type="hidden" name="_method" value="DELETE" id="">
-                            @can('delete',$item)
                             <button type="submit" class="btn btn-danger float-right btn-destroy">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 icon">
                                     <polyline points="3 6 5 6 21 6"></polyline>
@@ -101,14 +94,11 @@ use Illuminate\Support\Facades\Auth;
                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                 </svg>
                             </button>
-                            @endcan
-                            @can('update', $item)
                             <a href="{{route('comments.edit', $item->id)}}" class="btn btn-success float-right"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
                                     <path d="M12 20h9"></path>
                                     <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                                 </svg>
                             </a>
-                            @endcan
                         </form>
 
                     </p>

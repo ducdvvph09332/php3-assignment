@@ -13,7 +13,6 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware('checkLogin');
-        $this->authorizeResource(Product::class,'product');
     }
     /**
      * Display a listing of the resource.
