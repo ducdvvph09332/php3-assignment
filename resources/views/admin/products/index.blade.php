@@ -8,7 +8,6 @@
 use App\Models\Product;
 
 ?>
-@can('view-any', Product::class)
 <div id="tableHover" class="col-lg-12 col-12 layout-spacing">
     <div class="statbox widget box box-shadow">
         <div class="widget-header">
@@ -99,5 +98,4 @@ use App\Models\Product;
         </div>
     </div>
 </div>
-@endcan
 @endsection

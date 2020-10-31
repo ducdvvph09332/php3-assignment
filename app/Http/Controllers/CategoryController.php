@@ -45,7 +45,7 @@ class CategoryController extends Controller
     public function store(CategoryStoreRequest $request)
     {
         
-        $categories = new Category();
+        $categories = new Category;
         $categories->fill($request->all());
         if($categories->save()){
             return redirect()->route('categories.index')->with('notify','Thêm thể loại thành công');

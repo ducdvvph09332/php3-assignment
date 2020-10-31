@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 //ADMIN
 Route::prefix('/admin')->group(function () {
-    Route::view('/dashboard', 'admin.dashboard.index')->name('dashboard')->middleware('checkLogin');
+    Route::view('/dashboard', 'admin.dashboard.index')->name('dashboard');
     Route::resource('users', UserController::class);
     Route::resource('comments', CommentController::class);
     Route::resource('products', ProductController::class);

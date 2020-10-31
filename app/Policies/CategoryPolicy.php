@@ -10,6 +10,12 @@ class CategoryPolicy
 {
     use HandlesAuthorization;
 
+    public function before($user, $ability) {
+        if ($user->role_id===3) {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view any models.
      *

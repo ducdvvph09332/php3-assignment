@@ -21,27 +21,27 @@
                         </div>
 
                         <div class="form-group">
-                        <select name="parent_id" class="form-control" id="">
-                        <option value="" disabled>Chọn danh mục</option>
-                        <option value="" selected>Null</option>
+                            <select name="parent_id" class="form-control" id="">
+                                <option value="" selected >Null</option>
+                                <option value="" disabled>------------------------</option>
                                 @foreach($categories as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
-                         @error('parent_id')
-                         <div class="alert alert-danger">{{$message}}</div>
-                         @enderror
+                            @error('parent_id')
+                            <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
                         </div>
                         <input type="submit" name="pass" class="mt-4 btn btn-primary text-right" value="Create">
-                         <a href="{{route('categories.index')}}" class="mt-4 btn btn-danger text-right">Cancel</a>
+                        <a href="{{route('categories.index')}}" class="mt-4 btn btn-danger text-right">Cancel</a>
                     </div>
                 </div>
-                
+
 
             </div>
-                 
+
 
         </form>
-</div>
+    </div>
 </div>
 @endsection

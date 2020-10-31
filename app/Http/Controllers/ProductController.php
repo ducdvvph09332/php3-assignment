@@ -22,7 +22,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->orderBy('id', 'DESC')->paginate(5);
+        $products = Product::with(['category','comments'])->orderBy('id', 'DESC')->paginate(5);
+        // $products = Product::all();
         return view('admin.products.index', compact('products'));
     }
 
@@ -45,7 +46,7 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        $product = new Product();
+        $product = new Product;
         $product->fill($request->all());
         if ($request->hasFile('image_url')) {
             $originalFileName = $request->image_url->getClientOriginalName();
@@ -91,20 +92,13 @@ class ProductController extends Controller
      */
     public function update(ProductStoreRequest $request, Product $product)
     {
+        $product->fill($request->all());
         if ($request->hasFile('image_url')) {
             $originalFileName = $request->image_url->getClientOriginalName();
             $fileName = uniqid() . '_' . str_replace(' ', '_', $originalFileName);
             $path = $request->file('image_url')->storeAs('products', $fileName);
             $product->image_url = $path;
-            if ($product->update([
-                'name' => $request->name,
-                'category_id' => $request->category_id,
-                'description' => $request->description,
-                'price' => $request->price,
-                'sale_percent' => $request->sale_percent,
-                'stocks' => $request->stocks,
-                'is_active' => $request->is_active,
-            ])) {
+            if ($product->save()) {
                 return redirect()->route('products.index')->with('notify', 'Sửa sản phẩm thành công');
             }
         } else {
